@@ -7,7 +7,9 @@ class DelayHandler(object):
     @staticmethod
     def receive_packet(packet):
         print('Created:{0}  ID:{1}  Received:{2}'.format(
-            packet.created, packet.ident, Sim.scheduler.current_time() - packet.created)
+            packet.created,
+            packet.ident,
+            Sim.scheduler.current_time() - packet.created)
         )
 
 
@@ -16,7 +18,7 @@ def main():
     Sim.scheduler.reset()
 
     # setup network
-    net = Network('twonodes1.txt')
+    net = Network('twonodes2.txt')
 
     # setup routes
     n1 = net.get_node('n1')
@@ -40,5 +42,5 @@ if __name__ == '__main__':
     main()
 
 """
-Created:0  ID:1  Received:0.009000000000000001
+Created:0  ID:1  Received:80.01
 """
