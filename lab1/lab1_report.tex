@@ -6,6 +6,7 @@
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{listings}
+\usepackage{tikz}
 
 \setlength{\parindent}{1.4em}
 
@@ -35,37 +36,59 @@
 
 \section{Two Nodes}
 
-In this first section we explored a simple network consisting of two nodes and one bidirectional link. We explored the following scenarios:
+In this first section we explored a simple network consisting of two nodes and one bidirectional link. We simulated the following scenarios:
 \begin{enumerate}
 
 \item Set the bandwidth of the links to 1 Mbps, with a propagation delay of 1 second. Send one packet with 1000 bytes from n1 to n2 at time 0.
 
 \item Set the bandwidth of the links to 100 bps, with a propagation delay of 10 ms. Send one packet witih 1000 bytes from n1 to n2 at time 0.
 
-\item 3. Set the bandwidth of the links to 1 Mbps, with a propagation delay of 10 ms. Send three packets from n1 to n2 at time 0 seconds, then one packet at time 2 seconds. All packets should have 1000 bytes.
+\item Set the bandwidth of the links to 1 Mbps, with a propagation delay of 10 ms. Send three packets from n1 to n2 at time 0 seconds, then one packet at time 2 seconds. All packets should have 1000 bytes.
 
 \end{enumerate}
-Our findings for each of the above scenarios, include the following:
-\begin{enumerate}
-
-\item Our network configuration
-
-\item The output of the simulation
-
-\item The calculations we used in order to verify the output was correct.
-
-\end{enumerate}
+After running the simulations we will show our network configuration, the output of the simulation and the calculations we used to verify that the output was correct. 
 
 The results of running the simulator for each of the scenarios are below:
 
 \begin{enumerate}
+  \item 
+    \begin{tikzpicture}
+    \node[circle,draw, minimum size=1cm] (A) at (0,0) {N1};
+    \node[circle,draw, minimum size=1cm] (B) at (3,0) {N2};
+    \draw (A) -- (B) node[pos=0.5, sloped, above] {1 Mbps};
+    \end{tikzpicture}
 
-\item 
+    The output of the simulation was:
+    \begin{lstlisting} 
+    Created:0  ID:1 Received: 0.009000000000000001
+    \end{lstlisting}
 
-\item The output of the simulation
+  \item 
+    \begin{tikzpicture}
+    \node[circle,draw, minimum size=1cm] (A) at (0,0) {N1};
+    \node[circle,draw, minimum size=1cm] (B) at (3,0) {N2};
+    \draw (A) -- (B) node[pos=0.5, sloped, above] {100 bps};
+    \end{tikzpicture}
 
-\item The calculations we used in order to verify the output was correct.
+    The output of the simulation was: 
+    \begin{lstlisting}
+      Created:0  ID:1 Received: 80.01
+    \end{lstlisting}
 
+  \item 
+    \begin{tikzpicture}
+    \node[circle,draw, minimum size=1cm] (A) at (0,0) {N1};
+    \node[circle,draw, minimum size=1cm] (B) at (3,0) {N2};
+    \draw (A) -- (B) node[pos=0.5, sloped, above] {1 Mbps};
+    \end{tikzpicture}
+
+  The output of the simulation was:
+  \begin{lstlisting}
+    Created:0  ID:1  Received:0.018000000000000002
+    Created:0  ID:2  Received:0.026000000000000002
+    Created:0  ID:3  Received:0.034
+    Created:2.0  ID:4  Received:0.017999999999999794
+  \end{lstlisting}
 \end{enumerate}
 
 % \begin{lstlisting}
@@ -82,68 +105,55 @@ The results of running the simulator for each of the scenarios are below:
 
 \section{Three Nodes}
 
-Mauris dictum augue a eros adipiscing mollis. Duis tempus, risus sed
-iaculis vehicula, mauris mi aliquam odio, aliquet congue ligula tortor
-vitae leo. In convallis, lectus sed egestas tincidunt, augue massa
-lacinia augue, a ornare dui magna id enim. Fusce porttitor scelerisque
-lorem nec eleifend. Cras lobortis eleifend orci, non lacinia felis
-tincidunt eget. Nam vulputate tellus magna, at scelerisque
-ligula. Duis dictum bibendum odio nec lobortis. Ut dignissim fringilla
-euismod. In pharetra augue et odio blandit malesuada. Nulla lacus
-nisi, auctor eget aliquet a, auctor at lorem. Suspendisse nec laoreet
-sapien. Nulla facilisi. Nam a congue nunc. Pellentesque auctor turpis
-ac augue aliquam convallis. Aenean sit amet eros nibh. Morbi a egestas
-libero.
-
-\vspace{0.5cm}
-\begin{tabular}{lc}
-  \toprule
-  Setting & Result\\
-  \midrule
-  1 & 1.0\\
-  2 & 3.45\\
-  3 & 7.85\\
-  4 & 15.89\\
-  \bottomrule
-\end{tabular}
-\vspace{0.5cm}
-
-Nam sed lacus sit amet nisl bibendum rutrum vel id nisl. Etiam sit
-amet ipsum vulputate tellus fringilla tristique a et augue. Etiam
-suscipit ante id est lobortis hendrerit. Vivamus vel nisl sit amet
-metus volutpat faucibus. Praesent nunc urna, luctus vel convallis
-eget, luctus et odio. Nunc et nisl felis. Fusce quis libero sit amet
-libero cursus pretium. Vivamus dictum risus non tellus commodo non
-bibendum tortor convallis. Cras tempor orci eu leo auctor sed euismod
-arcu consectetur. In scelerisque felis et erat commodo
-bibendum. Pellentesque hendrerit enim vitae neque sollicitudin
-bibendum. In ligula lorem, blandit sit amet aliquet eget, accumsan ut
-sem. Maecenas in velit justo. Morbi tellus sem, ultricies in tristique
-non, aliquam a lacus. Sed rhoncus blandit ligula, ut eleifend magna
-lacinia quis.
+In this section we will use the simulator to setup a network consisting of three nodes and two links. We will test two fast links and one fast link with a slow link. For each scenario we will show our network configuration, the last 5 lines of the simulation ouput and the calculations we used to verify the output.
+The results are as follows.  
 
 \begin{enumerate}
+  \item 
+  \begin{tikzpicture}
+    \node[circle,draw, minimum size=1cm] (A) at (0,0) {A};
+    \node[circle,draw, minimum size=1cm] (B) at (3,0) {B};
+    \node[circle,draw, minimum size=1cm] (C) at (6,0) {C};
+    \draw (A) -- node[pos=0.5,above] {1 Mbps} node[midway,below]{100ms}(B) -- (C) node[pos=0.5,above] {1 Mbps} node[midway,below]{100ms};
+  \end{tikzpicture}
 
-\item Item.
-
-\item Another item.
-
+  \item 
+  \begin{tikzpicture}
+    \node[circle,draw, minimum size=1cm] (A) at (0,0) {A};
+    \node[circle,draw, minimum size=1cm] (B) at (3,0) {B};
+    \node[circle,draw, minimum size=1cm] (C) at (6,0) {C};
+    \draw (A) -- node[pos=0.5,above] {1 Mbps}  node[midway,below]{100ms}(B) -- (C) node[pos=0.5, above] {256 Kbps}  node[midway,below]{100ms};
+  \end{tikzpicture}
 \end{enumerate}
+
+% \vspace{0.5cm}
+% \begin{tabular}{lc}
+%   \toprule
+%   Setting & Result\\
+%   \midrule
+%   1 & 1.0\\
+%   2 & 3.45\\
+%   3 & 7.85\\
+%   4 & 15.89\\
+%   \bottomrule
+% \end{tabular}
+% \vspace{0.5cm}
+
 
 \section{Queueing Theory}
 
 
 
-% \includegraphics[width=11cm]{graphs/download-combined}
+% \includegraphics[width=11cm]{graphs/queueing_theory}
+This is the graph of our queue theory output. 
+\section{Summary}
 
-\section{Section Name}
+% $d_{trans}$ is the transmission delay. $d_{prop}$ is the propagation delay.
 
-$d_{trans}$ is the transmission delay. $d_{prop}$ is the propagation delay.
-
-\begin{align*}
-d &= d_{trans} + d_{prop}\\
-  &= (1000*8)/1000000 + 0.05\\
-  &= 0.058
-\end{align*}
+% \begin{align*}
+% d &= d_{trans} + d_{prop}\\
+%   &= (1000*8)/1000000 + 0.05\\
+%   &= 0.058
+% \end{align*}
 
 \end{document}
