@@ -73,6 +73,7 @@ def main():
         destination = n2.get_address('n1')
         max_rate = 1000000 // (1000 * 8)
         load = rate * max_rate
+        print(rate, load)
         g = Generator(node=n1, destination=destination, load=load, duration=100)
         Sim.scheduler.add(delay=0, event='generate', handler=g.handle)
 
@@ -83,6 +84,8 @@ def main():
         Sim.scheduler.run()
         avg_queue_delay = total_queue_delay / total_packets
         plot_data.append([rate, avg_queue_delay])
+
+    exit()
 
     data_rows = ['Utilization', 'Queueing Delay']
     with open('lab1.csv', 'w', newline='') as csv_file:

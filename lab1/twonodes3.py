@@ -9,8 +9,8 @@ class DelayHandler(object):
         print('Created:{0}  ID:{1}  Received:{2}'.format(
             packet.created,
             packet.ident,
-            Sim.scheduler.current_time() - packet.created)
-        )
+            Sim.scheduler.current_time()
+        ))
 
 
 def main():
